@@ -1,1 +1,72 @@
-<p>schedule works!</p>
+<app-header></app-header>
+<div class="container-lich-chieu" style="margin-top: 50px;">
+    <h2 style="color: #ff5400; border-bottom: 1px solid; padding: 25px 15px; line-height: 20px">Lịch Chiếu</h2>
+    <div class="schedule-month" style="font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: black;
+    padding-left: 15px;">Chọn lịch chiếu</div>
+    <div class="schedule-month">Tháng 4</div>
+
+<!-- Chọn ngày chiếu -->
+<div class="date-picker">
+  <div class="date-item active">Thứ 3<br>01</div>
+  <div class="date-item ">Thứ 4<br>02</div>
+  <div class="date-item">Thứ 5<br>03</div>
+  <div class="date-item">Thứ 6<br>04</div>
+  <div class="date-item">Thứ 7<br>05</div>
+  <div class="date-item">CN<br>07</div>
+  <div class="date-item">Thứ 2<br>07</div>
+</div>
+
+<!-- Chọn lịch chiếu -->
+<div class="schedule-container">
+  <!-- 1. Phim -->
+  <div class="movie-block">
+    <!-- Poster (tuỳ chọn) -->
+    <div class="movie-poster">
+      <img src="../../assets/2.jpg" alt="Poster 1">
+    </div>
+    <!-- Thông tin phim và các suất chiếu -->
+    <div class="movie-info">
+      <div class="movie-title">KÍNH VẠN HOA (T16)</div>
+      <div class="movie-sessions">
+        <div class="session">
+          11:15 - 13:00
+          <span class="room">Phòng chiếu 02</span>
+        </div>
+        <div class="session">
+          12:45 - 14:30
+          <span class="room">Phòng chiếu 03</span>
+        </div>
+        <div class="session">
+          15:00 - 16:45
+          <span class="room">Phòng chiếu 01</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 2. Phim -->
+  <div class="movie-block">
+    <div class="movie-poster">
+      <img src="../../assets/1.jpg" alt="Poster 2">
+    </div>
+    <div class="movie-info">
+      <div class="movie-title">MƯA TRÊN CÁNH BƯỚM (T16)</div>
+      <div class="movie-sessions">
+        <div class="session">
+          <a class="nav-link" routerLink="/seat" >  
+            11:15 - 13:00
+            <span class="room">Phòng chiếu 02</span>
+          </a>
+        </div>
+        <div class="session">
+          19:30 - 21:40
+          <span class="room">Phòng chiếu 03</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ... Thêm các khối movie-block khác nếu cần ... -->
+</div>
+</div>

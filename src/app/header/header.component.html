@@ -1,16 +1,17 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-    <a class="navbar-brand" routerLink="/">HUYCINEMA</a>
+    <a class="navbar-brand" routerLink="/" style="margin-left: 8px;">ZION CINEMA</a>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item"><a class="nav-link" routerLink="/">Trang chủ</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/schedule" >Lịch chiếu</a></li>
         <li class="nav-item" *ngIf="authService.isLoggedIn()">
           <a class="nav-link" routerLink="/tickets/history">Lịch sử mua vé</a>
         </li>
         <li class="nav-item"><a class="nav-link" routerLink="/contact">Liên hệ</a></li>
       </ul>
-      <div class="form-inline">
-        <ng-container *ngIf="!authService.isLoggedIn(); else loggedIn">
-          <button class="btn btn-primary" (click)="openLogin()">Đăng nhập</button>
+      <div class="form-inline" style="margin-right: 8px;">
+        <ng-container style="margin: 5px;" *ngIf="!authService.isLoggedIn(); else loggedIn">
+          <button class="btn btn-primary" style="margin-right: 5px;" (click)="openLogin()">Đăng nhập</button>
           <button class="btn btn-info" (click)="openRegister()">Đăng ký</button>
         </ng-container>
         <ng-template #loggedIn>
@@ -22,7 +23,7 @@
   </nav>
   
 
-  <div class="modal fade show d-block" *ngIf="showModal">
+  <!-- <div class="modal fade show d-block" id="loginModal" *ngIf="showModal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -44,5 +45,51 @@
         </div>
       </div>
     </div>
+  </div> -->
+
+  <!-- Modal Đăng nhập -->
+   
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Đăng nhập</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng" (click)="close()"></button>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+          <!-- Nội dung form đăng nhập -->
+          <input type="text" class="form-control" placeholder="Email">
+          <input type="password" class="form-control mt-2" placeholder="Mật khẩu">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">Đóng</button>
+          <button type="button" class="btn btn-primary">Đăng nhập</button>
+        </div>
+      </form>
+    </div>
   </div>
+</div>
   
+
+<!-- Modal Đăng ký -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registerModalLabel">Đăng ký</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Nội dung form đăng ký -->
+        <input type="text" class="form-control" placeholder="Họ tên">
+        <input type="email" class="form-control mt-2" placeholder="Email">
+        <input type="password" class="form-control mt-2" placeholder="Mật khẩu">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary">Đăng ký</button>
+      </div>
+    </div>
+  </div>
+</div>

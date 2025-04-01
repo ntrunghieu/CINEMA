@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { HeaderComponent } from '../../header/header.component';
 
 @Component({
   selector: 'app-movie-detail',
-  imports: [],
+  standalone: true,
+  imports: [RouterModule, HeaderComponent],
   templateUrl: './movie-detail.component.html',
   styleUrl: './movie-detail.component.css'
 })
