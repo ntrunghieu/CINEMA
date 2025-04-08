@@ -1,0 +1,66 @@
+<app-header></app-header>
+<div class="payment-container">
+  <div class="payment-card">
+    <div class="payment-header">
+      <h2>Chi tiết đơn hàng</h2>
+    </div>
+
+    <div class="order-summary">
+      <div class="movie-image">
+        <img src="../../assets/2.jpg" alt="{{movieInfo.title}}">
+      </div>
+
+      <div class="movie-details">
+        <h3>{{movieInfo.title}}</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <i class="fas fa-calendar"></i>
+            <span>{{movieInfo.date}}</span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-clock"></i>
+            <span>{{movieInfo.time}}</span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-door-open"></i>
+            <span>Phòng {{movieInfo.room}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="seat-summary">
+        <div class="summary-row">
+          <span class="label">Ghế đã chọn:</span>
+          <span class="value">{{selectedSeats.join(', ')}}</span>
+        </div>
+        <div class="summary-row">
+          <span class="label">Số lượng:</span>
+          <span class="value">{{selectedSeats.length}} ghế</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="price-summary">
+        <div class="summary-row total">
+          <span class="label">Tổng tiền:</span>
+          <span class="value price">{{totalAmount.toLocaleString('vi-VN')}} VNĐ</span>
+        </div>
+      </div>
+
+      <div class="payment-actions">
+        <button class="paypal-button" (click)="startPayPalPayment()">
+          <img src="../../assets/logo.jpg" alt="PayPal">
+          Thanh toán với PayPal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PayPal Button Container (Hidden by default) -->
+  <div class="payment-card">
+    <div id="paypal-button-container"></div>
+  </div>
+</div>

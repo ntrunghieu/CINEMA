@@ -1,0 +1,82 @@
+<app-header></app-header>
+<div class="bill-container">
+  <div class="bill-card">
+    <div class="bill-header">
+      <h1>Hóa đơn thanh toán</h1>
+      <div class="cinema-logo">
+        <img src="../../assets/zion.png" alt="Cinema Logo">
+      </div>
+    </div>
+
+    <div class="bill-content">
+      <div class="bill-info">
+        <div class="info-row">
+          <span class="label">Mã hóa đơn:</span>
+          <span class="value">{{billId}}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Ngày:</span>
+          <span class="value">{{paymentDate}}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Giờ:</span>
+          <span class="value">{{paymentTime}}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Phương thức:</span>
+          <span class="value payment-method">
+            <i class="fab fa-paypal"></i> {{paymentMethod}}
+          </span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="movie-details">
+        <h2>Thông tin phim</h2>
+        <div class="info-row">
+          <span class="label">Phim:</span>
+          <span class="value">{{movieInfo.title}}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Suất chiếu:</span>
+          <span class="value">{{movieInfo.date}} | {{movieInfo.time}}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Phòng:</span>
+          <span class="value">{{movieInfo.room}}</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="seat-details">
+        <h2>Thông tin ghế</h2>
+        <div class="info-row">
+          <span class="label">Ghế đã chọn:</span>
+          <span class="value">{{selectedSeats.join(', ')}}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Số lượng:</span>
+          <span class="value">{{selectedSeats.length}} ghế</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="total-amount">
+        <div class="info-row">
+          <span class="label">Tổng tiền:</span>
+          <span class="value price">{{totalAmount.toLocaleString('vi-VN')}} VNĐ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bill-footer">
+      <p>Cảm ơn quý khách đã sử dụng dịch vụ!</p>
+      <button class="home-button" routerLink="/">
+        <i class="fas fa-home"></i> Về trang chủ
+      </button>
+    </div>
+  </div>
+</div>

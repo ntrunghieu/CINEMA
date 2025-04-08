@@ -1,0 +1,137 @@
+.bill-container {
+  max-width: 800px;
+  margin: 80px auto 20px;
+  padding: 20px;
+}
+
+.bill-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.bill-header {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  padding: 30px;
+  text-align: center;
+  color: #fff;
+}
+
+.bill-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.cinema-logo {
+  margin-top: 20px;
+}
+
+.cinema-logo img {
+  max-width: 120px;
+}
+
+.bill-content {
+  padding: 30px;
+}
+
+.bill-info,
+.movie-details,
+.seat-details,
+.total-amount {
+  margin-bottom: 20px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.label {
+  color: #666;
+  font-weight: 500;
+}
+
+.value {
+  color: #333;
+  font-weight: 600;
+}
+
+.value.payment-method {
+  color: #0070ba;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.value.payment-method i {
+  font-size: 20px;
+}
+
+.value.price {
+  color: #2a5298;
+  font-size: 24px;
+}
+
+.divider {
+  height: 1px;
+  background: #eee;
+  margin: 20px 0;
+}
+
+h2 {
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.bill-footer {
+  text-align: center;
+  padding: 30px;
+  background: #f8f9fa;
+  border-top: 1px solid #eee;
+}
+
+.bill-footer p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.home-button {
+  padding: 12px 24px;
+  background: #2a5298;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.home-button:hover {
+  background: #1e3c72;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media print {
+  .bill-container {
+    margin: 0;
+    padding: 0;
+  }
+
+  .bill-card {
+    box-shadow: none;
+  }
+
+  .home-button {
+    display: none;
+  }
+}
