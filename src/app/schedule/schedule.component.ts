@@ -5,6 +5,7 @@ import { PhimServiceService } from '../services/phim/phim-service.service';
 import { ILichChieu } from '../model/phim/ILichChieu';
 import { NgFor } from '@angular/common';
 import { IPhim } from '../model/phim/IPhim';
+import { ScheduleService } from '../services/schedule.service';
 
 @Component({
   selector: 'app-schedule',
@@ -19,7 +20,11 @@ export class ScheduleComponent implements OnInit{
   anh: string | undefined;
   
 
-  constructor(private route: ActivatedRoute, private lichChieuService: PhimServiceService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private lichChieuService: PhimServiceService,
+    private scheduleService: ScheduleService
+  ) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -49,5 +54,18 @@ export class ScheduleComponent implements OnInit{
 
       console.log(this.groupedLichChieu);
     });
+  }
+
+  onShowtimeSelect(scheduleId: number, roomId: number) {
+    this.scheduleService.getAvailableSeats(scheduleId, roomId).subscribe(
+      (data) => {
+        console.log('Available seats:', data);
+        // Here you can handle the seat data, e.g. navigate to seat selection page
+        // or update the UI to show available seats
+      },
+      (error) => {
+        console.error('Error fetching seats:', error);
+      }
+    );
   }
 }

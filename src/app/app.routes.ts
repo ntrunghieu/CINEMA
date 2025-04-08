@@ -13,7 +13,7 @@ export const routes: Routes = [
         component: RoomComponent,
     },
     {
-        path: 'seat',
+        path: 'seat/:scheduleId/:roomId',
         component: SeatsComponent,
     },
     {

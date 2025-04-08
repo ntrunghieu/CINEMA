@@ -6,13 +6,56 @@ h1{
     color: black;
     padding-left: 15px;
 }
-.booking-container {
-    display: flex;
-    gap: 20px;
-    max-width: 1200px;
+.container {
+    max-width: 1400px;
     margin: 0 auto;
+    padding: 20px;
   }
-  
+
+  .content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .movie-info {
+    flex: 0 0 250px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .movie-info img {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 15px;
+  }
+
+  .movie-info h3 {
+    margin-bottom: 15px;
+    font-size: 1.2em;
+  }
+
+  .movie-info p {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+  }
+
+  .booking-info {
+    flex: 0 0 250px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .seat-map-container {
+    flex: 1;
+    margin: 0 20px;
+  }
+
   /* Bên trái: Sơ đồ ghế */
   .seat-map-container {
     flex: 1;
@@ -71,9 +114,155 @@ h1{
   
   /* Ghế đã đặt */
   .seat-map td.booked {
-    background-color: #999;
-    border: 1px solid #999;
+    background-color: #ff4444;
     cursor: not-allowed;
+    position: relative;
+  }
+
+  .seat-map td.booked::after {
+    content: '\2718'; /* X symbol */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+  }
+
+  /* Ghế đang chọn */
+  .seat-map td.selected {
+    background-color: #28a745;
+    border: 1px solid #28a745;
+    color: #fff;
+  }
+
+  /* Ghế trống */
+  .seat-map td.available {
+    background-color: #fff;
+    border: 1px solid #007bff;
+    cursor: pointer;
+  }
+
+  /* Ghế couple */
+  .seat-map td.couple {
+    background-color: #ff69b4;
+    color: black;
+    cursor: pointer;
+  }
+
+  .seat-map td.couple.booked {
+    background-color: #dc3545;
+    cursor: not-allowed;
+  }
+
+  .seat-map td.couple.booked::after {
+    content: '\2715';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+  }
+
+  /* Legend styles */
+  .seat-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .seat-sample {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+  }
+
+  .seat-sample.available {
+    background-color: #fff;
+    border: 1px solid #007bff;
+  }
+
+  .seat-sample.selected {
+    background-color: #28a745;
+    border: 1px solid #28a745;
+  }
+
+  .seat-sample.booked {
+    background-color: #ff4444;
+    position: relative;
+  }
+
+  .seat-sample.booked::after {
+    content: '\2718';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 10px;
+  }
+
+  /* Booking info styles */
+  .booking-info {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    min-width: 300px;
+  }
+
+  .selected-seats {
+    margin: 20px 0;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .btn-change-showtime,
+  .btn-continue {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-change-showtime {
+    background-color: #6c757d;
+    color: white;
+  }
+
+  .btn-continue {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .btn-continue:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .btn-change-showtime:hover {
+    background-color: #5a6268;
+  }
+
+  .btn-continue:hover:not(:disabled) {
+    background-color: #0056b3;
   }
   
   /* (Xóa quy tắc ghế VIP) */
