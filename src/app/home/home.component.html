@@ -1,6 +1,6 @@
 <app-header></app-header>
 <!-- content -->
-<div class="container">
+<div class="container" style="margin-top: 20px;">
 
 
     <!-- carousel -->
@@ -107,23 +107,23 @@
     </div> -->
 
     <div class="d-flex justify-content-between flex-wrap">
-        <div class="card movie-item" style="width:300px">
-            <img class="card-img-top img-movie" src="../../assets/1.jpg" alt="Card image" style="width:100%">
+        <div *ngFor="let phim of phim" class="card movie-item" style="width:300px">
+            <img class="card-img-top img-movie" src="{{phim.anh}}" alt="Card image" style="width:100%">
             <div class="card-body">
-                <h4 class="card-title">MƯA TRÊN CÁNH BƯỚM (T16)</h4>
-                <p class="card-text">110 phút | C18</p>
-                <a routerLink="/movie/movie-detail" class="btn btn-outline-warning" style="margin-right:70px">Chi tiết</a>
-                <button class="btn btn-outline-danger" (click)="openScheduleModal()">Mua vé</button>
+                <h4 class="card-title">{{ phim.tenPhim }}</h4>
+                <p class="card-text">{{ phim.thoiLuong }} phút | {{ phim.gioiHanTuoi?.maGioiHan }}</p>
+                <a [routerLink]="['/movie/movie-detail',phim.id]" class="btn btn-outline-warning" style="margin-right:70px">Chi tiết</a>
+                <button class="btn btn-outline-danger" (click)="openScheduleModal(phim.id || 0)">Mua vé</button>
             </div>
         </div>
     
-        <div class="card movie-item" style="width:300px">
+        <!-- <div class="card movie-item" style="width:300px">
             <img class="card-img-top img-movie" src="../../assets/2.jpg" alt="Card image" style="width:100%">
             <div class="card-body">
                 <h4 class="card-title">KÍNH VẠN HOA</h4>
                 <p class="card-text">110 phút | C18</p>
                 <a routerLink="/movie/movie-detail" class="btn btn-outline-warning" style="margin-right:70px">Chi tiết</a>
-                <button class="btn btn-outline-danger" (click)="openScheduleModal()">Mua vé</button>
+                <button class="btn btn-outline-danger" (click)="openScheduleModal(phim.id)">Mua vé</button>
             </div>
         </div>
 
@@ -133,7 +133,7 @@
                 <h4 class="card-title">BÁO THỦ</h4>
                 <p class="card-text">110 phút | C18</p>
                 <a routerLink="/movie/movie-detail" class="btn btn-outline-warning" style="margin-right:70px">Chi tiết</a>
-                <button class="btn btn-outline-danger" (click)="openScheduleModal()">Mua vé</button>
+                <button class="btn btn-outline-danger" (click)="openScheduleModal(phim.id)">Mua vé</button>
             </div>
         </div>
 
@@ -163,11 +163,10 @@
                 <h4 class="card-title">CHỊ DÂU</h4>
                 <p class="card-text">110 phút | C18</p>
                 <a routerLink="/movie/movie-detail" class="btn btn-outline-warning" style="margin-right:70px">Chi tiết</a>
-                <!-- <a routerLink="/seat" class="btn btn-outline-danger">Mua vé</a> -->
                 <button class="btn btn-outline-danger" (click)="openScheduleModal()">Mua vé</button>
 
             </div>
-        </div>
+        </div> -->
     </div>
     
 
@@ -238,13 +237,13 @@
       <div class="modal-content custom-scroll" >
         <!-- Header -->
         <div class="modal-header">
-            <h2 style="color: #ff5400; border-bottom: 1px solid; padding: 25px 15px; line-height: 20px">Lịch Chiếu</h2>
+            <h2 style="color: #ff5400; border-bottom: 1px solid;  line-height: 20px">Lịch Chiếu</h2>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng" (click)="close()"></button>
         </div>
 
-        <div class="container-lich-chieu">
-            <div class="schedule-month" style="font-size: 24px;
-            margin-top: 20px;
+        <div class="container-lich-chieu" >
+            <!-- <h2 style="color: #ff5400; border-bottom: 1px solid; padding: 25px 15px; line-height: 20px">Lịch Chiếu</h2> -->
+            <div class="schedule-month" style="font-size: 18px;
             margin-bottom: 10px;
             color: black;
             padding-left: 15px;">Chọn lịch chiếu</div>
@@ -263,40 +262,65 @@
         
         <!-- Chọn lịch chiếu -->
         <div class="schedule-container">
-          <!-- 1. Phim -->
-          <div class="movie-block">
-            <!-- Poster (tuỳ chọn) -->
+          <div *ngFor="let item of groupedLichChieu" class="movie-block">
+            <!-- Poster -->
             <div class="movie-poster">
-              <img src="../../assets/2.jpg" alt="Poster 1">
+              <img [src]="item.phim.anh" alt="Poster">
             </div>
-            <!-- Thông tin phim và các suất chiếu -->
+        
+            <!-- Thông tin phim -->
             <div class="movie-info">
-              <div class="movie-title">KÍNH VẠN HOA (T16)</div>
-              
-
+              <div class="movie-title">
+                {{ item.phim.tenPhim }} ({{ item.phim.gioiHanTuoi?.maGioiHan }})
+              </div>
+        
+              <!-- Các suất chiếu -->
               <div class="movie-sessions">
-                <div class="session" >
-                    <a class="nav-link" data-bs-dismiss="modal" routerLink="/schedule" >  
-                        11:15 - 13:00
-                        <span class="room">Phòng chiếu 02</span>
-                    </a>
-                </div>
-                <div class="session">
-                    <a class="nav-link" data-bs-dismiss="modal" routerLink="/schedule" >  
-                        12:45 - 14:30
-                        <span class="room">Phòng chiếu 03</span>
-                    </a>               
-                </div>
-                <div class="session">
-                    <a class="nav-link" data-bs-dismiss="modal" routerLink="/schedule" >  
-                        15:00 - 16:45
-                        <span class="room">Phòng chiếu 01</span>
-                    </a> 
+                <div class="session" *ngFor="let suat of item.suatChieu">
+                  {{ suat.gioBatDau.slice(0, 5) }} - {{ suat.gioKetThuc.slice(0, 5) }}
+                  <span class="room">{{ suat.phong.tenPhong }}</span>
                 </div>
               </div>
             </div>
           </div>
-          
+          <!-- 1. Phim -->
+          <!-- <div *ngFor="let lichChieu of lichChieuList" class="movie-block"> -->
+            <!-- <div class="movie-poster">
+              <img src="{{lichChieu.phim.anh}}" alt="Poster 1">
+            </div> -->
+            <!-- Thông tin phim và các suất chiếu -->
+            <!-- <div class="movie-info">
+              <div class="movie-title">{{lichChieu.phim.tenPhim}}  ({{lichChieu.phim.gioiHanTuoi?.maGioiHan}})</div>
+              <div  class="movie-sessions">
+                <div class="session">
+                  {{lichChieu.gioBatDau.slice(0, 5)}} - {{lichChieu.gioKetThuc.slice(0, 5)}}
+                  <span class="room">{{lichChieu.phong.tenPhong}}</span>
+                </div>
+                
+              </div>
+            </div>
+          </div> -->
+          <!-- 2. Phim -->
+          <!-- <div class="movie-block">
+            <div class="movie-poster">
+              <img src="../../assets/1.jpg" alt="Poster 2">
+            </div>
+            <div class="movie-info">
+              <div class="movie-title">MƯA TRÊN CÁNH BƯỚM (T16)</div>
+              <div class="movie-sessions">
+                <div class="session">
+                  <a class="nav-link" routerLink="/seat" >  
+                    11:15 - 13:00
+                    <span class="room">Phòng chiếu 02</span>
+                  </a>
+                </div>
+                <div class="session">
+                  19:30 - 21:40
+                  <span class="room">Phòng chiếu 03</span>
+                </div>
+              </div>
+            </div>
+          </div> -->
           <!-- ... Thêm các khối movie-block khác nếu cần ... -->
         </div>
         </div>

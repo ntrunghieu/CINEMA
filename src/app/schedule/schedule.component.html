@@ -21,33 +21,46 @@
 
 <!-- Chọn lịch chiếu -->
 <div class="schedule-container">
-  <!-- 1. Phim -->
-  <div class="movie-block">
-    <!-- Poster (tuỳ chọn) -->
+  <div *ngFor="let item of groupedLichChieu" class="movie-block">
+    <!-- Poster -->
     <div class="movie-poster">
-      <img src="../../assets/2.jpg" alt="Poster 1">
+      <img [src]="item.phim.anh" alt="Poster">
     </div>
-    <!-- Thông tin phim và các suất chiếu -->
+
+    <!-- Thông tin phim -->
     <div class="movie-info">
-      <div class="movie-title">KÍNH VẠN HOA (T16)</div>
+      <div class="movie-title">
+        {{ item.phim.tenPhim }} ({{ item.phim.gioiHanTuoi?.maGioiHan }})
+      </div>
+
+      <!-- Các suất chiếu -->
       <div class="movie-sessions">
-        <div class="session">
-          11:15 - 13:00
-          <span class="room">Phòng chiếu 02</span>
-        </div>
-        <div class="session">
-          12:45 - 14:30
-          <span class="room">Phòng chiếu 03</span>
-        </div>
-        <div class="session">
-          15:00 - 16:45
-          <span class="room">Phòng chiếu 01</span>
+        <div class="session" *ngFor="let suat of item.suatChieu">
+          {{ suat.gioBatDau.slice(0, 5) }} - {{ suat.gioKetThuc.slice(0, 5) }}
+          <span class="room">{{ suat.phong.tenPhong }}</span>
         </div>
       </div>
     </div>
   </div>
+  <!-- 1. Phim -->
+  <!-- <div *ngFor="let lichChieu of lichChieuList" class="movie-block"> -->
+    <!-- <div class="movie-poster">
+      <img src="{{lichChieu.phim.anh}}" alt="Poster 1">
+    </div> -->
+    <!-- Thông tin phim và các suất chiếu -->
+    <!-- <div class="movie-info">
+      <div class="movie-title">{{lichChieu.phim.tenPhim}}  ({{lichChieu.phim.gioiHanTuoi?.maGioiHan}})</div>
+      <div  class="movie-sessions">
+        <div class="session">
+          {{lichChieu.gioBatDau.slice(0, 5)}} - {{lichChieu.gioKetThuc.slice(0, 5)}}
+          <span class="room">{{lichChieu.phong.tenPhong}}</span>
+        </div>
+        
+      </div>
+    </div>
+  </div> -->
   <!-- 2. Phim -->
-  <div class="movie-block">
+  <!-- <div class="movie-block">
     <div class="movie-poster">
       <img src="../../assets/1.jpg" alt="Poster 2">
     </div>
@@ -66,7 +79,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- ... Thêm các khối movie-block khác nếu cần ... -->
 </div>
 </div>

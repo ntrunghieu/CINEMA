@@ -21,7 +21,7 @@ export const routes: Routes = [
         component: BillComponent,
     },
     {
-        path: 'schedule',
+        path: 'schedule/:id',
         component: ScheduleComponent,
     },
     {
