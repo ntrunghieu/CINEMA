@@ -261,28 +261,52 @@
         </div>
         
         <!-- Chọn lịch chiếu -->
-        <div class="schedule-container">
-          <div *ngFor="let item of groupedLichChieu" class="movie-block">
+        <!-- <div class="schedule-container">
+          <div *ngFor="let item of groupedLichChieu" class="movie-block"> -->
             <!-- Poster -->
-            <div class="movie-poster">
+            <!-- <div class="movie-poster">
               <img [src]="item.phim.anh" alt="Poster">
-            </div>
+            </div> -->
         
             <!-- Thông tin phim -->
-            <div class="movie-info">
+            <!-- <div class="movie-info">
               <div class="movie-title">
                 {{ item.phim.tenPhim }} ({{ item.phim.gioiHanTuoi?.maGioiHan }})
-              </div>
+              </div> -->
         
               <!-- Các suất chiếu -->
-              <div class="movie-sessions">
+              <!-- <div class="movie-sessions">
                 <div class="session" *ngFor="let suat of item.suatChieu">
                   {{ suat.gioBatDau.slice(0, 5) }} - {{ suat.gioKetThuc.slice(0, 5) }}
                   <span class="room">{{ suat.phong.tenPhong }}</span>
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
+
+          <div class="schedule-container">
+            <div *ngFor="let item of groupedLichChieu" class="movie-block">
+              <!-- Poster -->
+              <div class="movie-poster">
+                <img [src]="item.phim.anh" alt="Poster">
+              </div>
+          
+              <!-- Thông tin phim -->
+              <div class="movie-info">
+                <div class="movie-title">
+                  {{ item.phim.tenPhim }} ({{ item.phim.gioiHanTuoi?.maGioiHan }})
+                </div>
+          
+                <!-- Các suất chiếu -->
+                <div class="movie-sessions">
+                  <div class="session" *ngFor="let suat of item.suatChieu" [routerLink]="['/seat', suat.id, suat.phong.id, suat.phim.id]" style="cursor: pointer;">
+                    {{ suat.gioBatDau.slice(0, 5) }} - {{ suat.gioKetThuc.slice(0, 5) }}
+                    <span class="room">{{ suat.phong.tenPhong }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
           <!-- 1. Phim -->
           <!-- <div *ngFor="let lichChieu of lichChieuList" class="movie-block"> -->
             <!-- <div class="movie-poster">

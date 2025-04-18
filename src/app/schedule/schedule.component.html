@@ -35,7 +35,7 @@
 
       <!-- Các suất chiếu -->
       <div class="movie-sessions">
-        <div class="session" *ngFor="let suat of item.suatChieu" [routerLink]="['/seat', suat.id, suat.phong.id]" style="cursor: pointer;">
+        <div class="session" *ngFor="let suat of item.suatChieu" [routerLink]="['/seat', suat.id, suat.phong.id, suat.phim.id]" style="cursor: pointer;">
           {{ suat.gioBatDau.slice(0, 5) }} - {{ suat.gioKetThuc.slice(0, 5) }}
           <span class="room">{{ suat.phong.tenPhong }}</span>
         </div>

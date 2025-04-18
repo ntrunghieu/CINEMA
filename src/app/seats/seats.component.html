@@ -4,12 +4,15 @@
         <div class="content-wrapper">
           <!-- Thông tin phim bên trái -->
           <div class="movie-info">
-            <img src="../../assets/2.jpg" alt="Poster Nhà Gia Tiến (T18)">
-            <h3>Phim: KÍNH VẠN HOA (T16)</h3>
-            <p><strong>Ngày:</strong> 02/04/2025</p>
-            <p><strong>Thời gian:</strong> 13:20 - 15:17</p>
-            <p><strong>Phòng:</strong> 02</p>
-            <!-- <button class="btn-change-showtime">Đổi suất chiếu</button> -->
+            <div *ngIf="!seatInfo" class="loading">Đang tải thông tin...</div>
+            <div *ngIf="seatInfo">
+              <img src="{{seatInfo.anhPoster}}" alt="Poster">
+              <h3>Phim: {{seatInfo.tenPhim}}</h3>
+              <p><strong>Ngày: </strong> {{seatInfo.ngayChieu | date: 'dd/MM/yyyy'}}</p>
+              <p><strong>Thời gian:</strong> {{seatInfo.gioBatDau.slice(0, 5)}} - {{seatInfo.gioKetThuc.slice(0, 5)}}</p>
+              <p><strong>Phòng:</strong> {{seatInfo.phong}}</p>
+              <!-- <button class="btn-change-showtime">Đổi suất chiếu</button> -->
+            </div>
           </div>
 
           <!-- Sơ đồ ghế ở giữa -->
@@ -22,7 +25,7 @@
                 <tr>
                   <th>A</th>
                   <td *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13]" 
-                      class="available" 
+                      [class]="seatInfo?.danhSachGheDaDat?.includes('A' + i) ? 'booked' : 'available'" 
                       [attr.data-seat]="'A' + i"
                       (click)="toggleSeatSelection('A' + i, $event)">
                       A{{i}}
@@ -32,7 +35,7 @@
                 <tr>
                   <th>B</th>
                   <td *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13]" 
-                      class="available" 
+                      [class]="seatInfo?.danhSachGheDaDat?.includes('B' + i) ? 'booked' : 'available'" 
                       [attr.data-seat]="'B' + i"
                       (click)="toggleSeatSelection('B' + i, $event)">
                       B{{i}}
@@ -41,70 +44,42 @@
                 <!-- Hàng C -->
                 <tr>
                   <th>C</th>
-                  <td class="available" data-seat="C1" (click)="toggleSeatSelection('C1', $event)">C1</td>
-                  <td class="available" data-seat="C2" (click)="toggleSeatSelection('C2', $event)">C2</td>
-                  <td class="available" data-seat="C3" (click)="toggleSeatSelection('C3', $event)">C3</td>
-                  <td class="available" data-seat="C4" (click)="toggleSeatSelection('C4', $event)">C4</td>
-                  <td class="available" data-seat="C5" (click)="toggleSeatSelection('C5', $event)">C5</td>
-                  <td class="available" data-seat="C6" (click)="toggleSeatSelection('C6', $event)">C6</td>
-                  <td class="available" data-seat="C7" (click)="toggleSeatSelection('C7', $event)">C7</td>
-                  <td class="available" data-seat="C8" (click)="toggleSeatSelection('C8', $event)">C8</td>
-                  <td class="available" data-seat="C9" (click)="toggleSeatSelection('C9', $event)">C9</td>
-                  <td class="available" data-seat="C10" (click)="toggleSeatSelection('C10', $event)">C10</td>
-                  <td class="available" data-seat="C11" (click)="toggleSeatSelection('C11', $event)">C11</td>
-                  <td class="available" data-seat="C12" (click)="toggleSeatSelection('C12', $event)">C12</td>
-                  <td class="available" data-seat="C13" (click)="toggleSeatSelection('C13', $event)">C13</td>
+                  <td *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13]" 
+                      [class]="seatInfo?.danhSachGheDaDat?.includes('C' + i) ? 'booked' : 'available'" 
+                      [attr.data-seat]="'C' + i"
+                      (click)="toggleSeatSelection('C' + i, $event)">
+                      C{{i}}
+                  </td>
                 </tr>
                 <!-- Hàng D -->
                 <tr>
                   <th>D</th>
-                  <td class="available" data-seat="D1" (click)="toggleSeatSelection('D1', $event)">D1</td>
-                  <td class="available" data-seat="D2" (click)="toggleSeatSelection('D2', $event)">D2</td>
-                  <td class="available" data-seat="D3" (click)="toggleSeatSelection('D3', $event)">D3</td>
-                  <td class="available" data-seat="D4" (click)="toggleSeatSelection('D4', $event)">D4</td>
-                  <td class="available" data-seat="D5" (click)="toggleSeatSelection('D5', $event)">D5</td>
-                  <td class="available" data-seat="D6" (click)="toggleSeatSelection('D6', $event)">D6</td>
-                  <td class="available" data-seat="D7" (click)="toggleSeatSelection('D7', $event)">D7</td>
-                  <td class="available" data-seat="D8" (click)="toggleSeatSelection('D8', $event)">D8</td>
-                  <td class="available" data-seat="D9" (click)="toggleSeatSelection('D9', $event)">D9</td>
-                  <td class="available" data-seat="D10" (click)="toggleSeatSelection('D10', $event)">D10</td>
-                  <td class="available" data-seat="D11" (click)="toggleSeatSelection('D11', $event)">D11</td>
-                  <td class="available" data-seat="D12" (click)="toggleSeatSelection('D12', $event)">D12</td>
-                  <td class="available" data-seat="D13" (click)="toggleSeatSelection('D13', $event)">D13</td>
+                  <td *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13]" 
+                      [class]="seatInfo?.danhSachGheDaDat?.includes('D' + i) ? 'booked' : 'available'" 
+                      [attr.data-seat]="'D' + i"
+                      (click)="toggleSeatSelection('D' + i, $event)">
+                      D{{i}}
+                  </td>
                 </tr>
                 <!-- Hàng E -->
                 <tr>
                   <th>E</th>
-                  <td class="available" data-seat="E1" (click)="toggleSeatSelection('E1', $event)">E1</td>
-                  <td class="available" data-seat="E2" (click)="toggleSeatSelection('E2', $event)">E2</td>
-                  <td class="available" data-seat="E3" (click)="toggleSeatSelection('E3', $event)">E3</td>
-                  <td class="available" data-seat="E4" (click)="toggleSeatSelection('E4', $event)">E4</td>
-                  <td class="available" data-seat="E5" (click)="toggleSeatSelection('E5', $event)">E5</td>
-                  <td class="available" data-seat="E6" (click)="toggleSeatSelection('E6', $event)">E6</td>
-                  <td class="available" data-seat="E7" (click)="toggleSeatSelection('E7', $event)">E7</td>
-                  <td class="available" data-seat="E8" (click)="toggleSeatSelection('E8', $event)">E8</td>
-                  <td class="available" data-seat="E9" (click)="toggleSeatSelection('E9', $event)">E9</td>
-                  <td class="available" data-seat="E10" (click)="toggleSeatSelection('E10', $event)">E10</td>
-                  <td class="available" data-seat="E11" (click)="toggleSeatSelection('E11', $event)">E11</td>
-                  <td class="available" data-seat="E12" (click)="toggleSeatSelection('E12', $event)">E12</td>
-                  <td class="available" data-seat="E13" (click)="toggleSeatSelection('E13', $event)">E13</td>
+                  <td *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13]" 
+                      [class]="seatInfo?.danhSachGheDaDat?.includes('E' + i) ? 'booked' : 'available'" 
+                      [attr.data-seat]="'E' + i"
+                      (click)="toggleSeatSelection('E' + i, $event)">
+                      E{{i}}
+                  </td>
                 </tr>
                 <!-- Hàng F -->
                 <tr>
                   <th>F</th>
-                  <td class="available" data-seat="F1" (click)="toggleSeatSelection('F1', $event)">F1</td>
-                  <td class="available" data-seat="F2" (click)="toggleSeatSelection('F2', $event)">F2</td>
-                  <td class="available" data-seat="F3" (click)="toggleSeatSelection('F3', $event)">F3</td>
-                  <td class="available" data-seat="F4" (click)="toggleSeatSelection('F4', $event)">F4</td>
-                  <td class="available" data-seat="F5" (click)="toggleSeatSelection('F5', $event)">F5</td>
-                  <td class="available" data-seat="F6" (click)="toggleSeatSelection('F6', $event)">F6</td>
-                  <td class="available" data-seat="F7" (click)="toggleSeatSelection('F7', $event)">F7</td>
-                  <td class="available" data-seat="F8" (click)="toggleSeatSelection('F8', $event)">F8</td>
-                  <td class="available" data-seat="F9" (click)="toggleSeatSelection('F9', $event)">F9</td>
-                  <td class="available" data-seat="F10" (click)="toggleSeatSelection('F10', $event)">F10</td>
-                  <td class="available" data-seat="F11" (click)="toggleSeatSelection('F11', $event)">F11</td>
-                  <td class="available" data-seat="F12" (click)="toggleSeatSelection('F12', $event)">F12</td>
-                  <td class="available" data-seat="F13" (click)="toggleSeatSelection('F13', $event)">F13</td>
+                  <td *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13]" 
+                      [class]="seatInfo?.danhSachGheDaDat?.includes('F' + i) ? 'booked' : 'available'" 
+                      [attr.data-seat]="'F' + i"
+                      (click)="toggleSeatSelection('F' + i, $event)">
+                      F{{i}}
+                  </td>
                 </tr>
                 <!-- Hàng G: Mỗi ô ghế được gộp thành 2 ghế thường, dùng colspan="2" -->
                 <tr>
@@ -149,6 +124,11 @@
 
         <!-- Buttons at bottom -->
         <div class="button-group">
-          <button class="btn-change-showtime">Đổi suất chiếu</button>
-          <button class="btn-continue" [disabled]="selectedSeats.length === 0">Tiếp tục</button>
+          <button class="btn-change-showtime">
+            <a class="nav-link" [routerLink]="['/schedule',phimId]" >
+              Đổi suất chiếu
+              </a>
+            </button>
+          <div #paypalButtons id="paypal-buttons"></div>
+          <button hidden class="btn-continue" [disabled]="selectedSeats.length === 0">Tiếp tục</button>
         </div>

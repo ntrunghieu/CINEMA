@@ -4,9 +4,14 @@
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item"><a class="nav-link" routerLink="/">Trang chủ</a></li>
-      <li class="nav-item"><a class="nav-link" routerLink="/schedule" >Lịch chiếu</a></li>
-      <li class="nav-item" *ngIf="authService.isLoggedIn()">
-        <a class="nav-link" routerLink="/tickets/history">Lịch sử mua vé</a>
+      <li class="nav-item" *ngIf="authService.isLoggedIn() && authService.getUser() === 'Admin'">
+        <a class="nav-link" routerLink="/admin">Quản lý phim</a>
+      </li>
+      <li class="nav-item" *ngIf="authService.isLoggedIn() && authService.getUser() != 'Admin'">
+        <a class="nav-link" routerLink="/schedule">Lịch chiếu phim</a>
+      </li>
+      <li class="nav-item" *ngIf="authService.isLoggedIn() && authService.getUser() != 'Admin'">
+        <a class="nav-link" routerLink="/history">Lịch sử đặt vé</a>
       </li>
       <li class="nav-item"><a class="nav-link" routerLink="/contact">Liên hệ</a></li>
     </ul>

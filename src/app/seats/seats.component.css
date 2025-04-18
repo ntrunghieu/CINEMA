@@ -230,6 +230,13 @@ h1{
     justify-content: center;
     gap: 20px;
     margin-top: 20px;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  #paypal-buttons {
+    min-width: 200px;
+    flex-grow: 1;
   }
 
   .btn-change-showtime,
@@ -280,13 +287,18 @@ h1{
   /* Hiệu ứng hover cho ghế trống (available và couple) */
   .seat-map td.available:hover,
   .seat-map td.couple:hover {
-    background-color: #007BFF; /* nền xanh */
+    background-color: #0056b3; /* nền xanh */
+    color: #fff;
+  }
+
+  .seat-map td.couple.selected {
+    background-color: #ff00ee; /* nền xanh */
     color: #fff;
   }
   
   /* Khi ghế được chọn */
   .seat-map td.selected {
-    background-color: #007BFF; /* giữ nền xanh */
+    background-color: #28a745; /* giữ nền xanh */
     color: #fff;
   }
   
@@ -311,7 +323,7 @@ h1{
     background-color: #999;
   }
   .legend-box.selected {
-    background-color: #007BFF;
+    background-color: #ff00ee;
   }
   /* Xóa quy tắc VIP legend */
   /* .legend-box.vip {
