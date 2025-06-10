@@ -20,7 +20,6 @@ public class GheController {
             @PathVariable Long scheduleId,
             @PathVariable Long roomId,
             @PathVariable Long phimId) {
-
         GheDTO gheDTO = gheService.getSeatInfo(scheduleId, roomId, phimId);
         return ResponseEntity.ok(gheDTO);
     }
